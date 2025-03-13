@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Calculadora de Tablas de Verdad y Visualización Interactiva del Árbol Sintáctico" />
+    <title>Calculadora de Tablas de Verdad y Árbol Sintáctico</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Selector de idioma -->
+        <div class="language-selector">
+            <label for="language">Idioma:</label>
+            <select id="language">
+                <option value="es">Español</option>
+                <option value="eu">Euskera</option>
+            </select>
+        </div>
+        <h1 id="title">Calculadora de Tablas de Verdad</h1>
+        <div class="leyenda">
+            <p id="legendTitle"><strong>Leyenda de Símbolos</strong></p>
+            <ul>
+                <li><strong>∧</strong> <span id="conjunction">Conjunción</span></li>
+                <li><strong>∨</strong> <span id="disjunction">Disyunción</span></li>
+                <li><strong>¬</strong> <span id="negation">Negación</span></li>
+                <li><strong>→</strong> <span id="conditional">Condicional</span></li>
+                <li><strong>↔</strong> <span id="biconditional">Bicondicional</span></li>
+                <li><strong>( )</strong> <span id="parentheses">Paréntesis</span></li>
+                <li><strong>p, q, r, s, t</strong> <span id="variables">Variables</span></li>
+            </ul>
+        </div>
+        <!-- Botones de Variables -->
+        <div class="botones-variables">
+            <button type="button" id="btnP">p</button>
+            <button type="button" id="btnQ">q</button>
+            <button type="button" id="btnR">r</button>
+            <button type="button" id="btnS">s</button>
+            <button type="button" id="btnT">t</button>
+        </div>
+        <!-- Botones de Operadores -->
+        <div class="botones-simbolos">
+            <button type="button" id="btnAnd">∧</button>
+            <button type="button" id="btnOr">∨</button>
+            <button type="button" id="btnNot">¬</button>
+            <button type="button" id="btnConditional">→</button>
+            <button type="button" id="btnBiconditional">↔</button>
+            <button type="button" id="btnOpenParen">(</button>
+            <button type="button" id="btnCloseParen">)</button>
+        </div>
+        <!-- Formulario -->
+        <form id="tablaVerdadForm">
+            <label for="expresion" id="expressionLabel"><strong>Expresión Lógica:</strong></label>
+            <textarea id="expresion" name="expresion" required></textarea>
+            <div class="form-buttons">
+                <button type="submit" id="btnCalcular">Calcular</button>
+                <button type="button" id="btnLimpiar">Limpiar</button>
+                <button type="button" id="btnExportar">Exportar PDF</button>
+            </div>
+        </form>
+        <div id="resultadoTabla"></div>
+        <!-- Contenedor para el árbol -->
+        <div id="parseTree"></div>
+        <button type="button" id="btnResetZoom">Resetear Vista</button>
+        <!-- Generador Aleatorio -->
+        <div id="randomGenerator">
+            <h2 id="randomGeneratorTitle">Generador de Fórmulas Aleatorias</h2>
+            <label for="numVariables" id="numVariablesLabel">Número de variables (1-5):</label>
+            <input type="number" id="numVariables" name="numVariables" min="1" max="5" value="3" />
+            <label for="profundidad" id="depthLabel">Profundidad (1-5):</label>
+            <input type="number" id="profundidad" name="profundidad" min="1" max="5" value="3" />
+            <label for="varsSubformula" id="operandsPerSubformulaLabel">Operandos por subfórmula (1-4):</label>
+            <input type="number" id="varsSubformula" name="varsSubformula" min="1" max="4" value="2" />
+            <fieldset>
+                <legend id="allowedOperators">Operadores permitidos</legend>
+                <label><input type="checkbox" class="operator" value="¬" checked> ¬</label>
+                <label><input type="checkbox" class="operator" value="∧" checked> ∧</label>
+                <label><input type="checkbox" class="operator" value="∨" checked> ∨</label>
+                <label><input type="checkbox" class="operator" value="→" checked> →</label>
+                <label><input type="checkbox" class="operator" value="↔" checked> ↔</label>
+            </fieldset>
+            <button type="button" id="btnGenerarFormula">Generar Fórmula Aleatoria</button>
+        </div>
+    </div>
+    <!-- Tooltip -->
+    <div id="tooltip"></div>
+    <footer>
+        <div class="license-frame">
+            Work licenced under CC BY-NC 4.0 | by JC v7.1
+            <img src="https://licensebuttons.net/l/by-nc/4.0/88x31.png" alt="CC BY-NC 4.0" />
+        </div>
+    </footer>
+    <!-- Librerías externas -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
